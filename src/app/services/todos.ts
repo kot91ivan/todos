@@ -2,7 +2,6 @@
 import type { Todo } from "@prisma/client"
 import { prisma } from "../../../lib/prisma"
 import { revalidatePath } from "next/cache"
-import { redirect } from "next/navigation"
 
 export async function getTodos() {
   const items = await prisma.todo.findMany()
@@ -33,7 +32,6 @@ export async function updateItem(id: string, isComplete: boolean) {
   })
 
   revalidatePath("/")
-  redirect("/")
 }
 
 export async function deleteItem(id: string) {
@@ -44,5 +42,4 @@ export async function deleteItem(id: string) {
   })
 
   revalidatePath("/")
-  redirect("/")
 }
