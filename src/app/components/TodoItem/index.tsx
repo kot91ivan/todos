@@ -4,15 +4,15 @@ import { IconTrash } from "@tabler/icons-react"
 
 type TodoItemProps = {
   id: string
-  name: string
-  isCompleted: boolean
+  title: string
+  isComplete: boolean
 }
 
-export default function TodoItem({ id, name, isCompleted }: TodoItemProps) {
+export default function TodoItem({ id, title, isComplete }: TodoItemProps) {
   const handleUpdateItem = async () => {
     "use server"
 
-    await updateItem(id, !isCompleted)
+    await updateItem(id, !isComplete)
   }
 
   const handleDeleteItem = async () => {
@@ -23,8 +23,8 @@ export default function TodoItem({ id, name, isCompleted }: TodoItemProps) {
 
   return (
     <div className="flex items-center gap-2 group p-1">
-      <Checkbox checked={isCompleted} onChange={handleUpdateItem} className="cursor-pointer" />
-      <span className={`${isCompleted && "line-through text-gray-500"}`}>{name}</span>
+      <Checkbox checked={isComplete} onChange={handleUpdateItem} className="cursor-pointer" />
+      <span className={`${isComplete && "line-through text-gray-500"}`}>{title}</span>
 
       <ActionIcon
         color="red"
